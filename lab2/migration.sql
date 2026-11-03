@@ -1,6 +1,6 @@
 BEGIN;
 
-CREATE TABLE category
+CREATE TABLE categories
 (
     id       BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name     VARCHAR(50)    NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE category
 );
 
 INSERT INTO
-    category(name, price, event_id)
+    categories(name, price, event_id)
 SELECT
     'Базовая', 0.0, id
 FROM
@@ -20,7 +20,7 @@ FROM
 ALTER TABLE
     tickets
 ADD COLUMN
-    category_id BIGINT REFERENCES category (id) ON DELETE RESTRICT;
+    category_id BIGINT REFERENCES categories (id) ON DELETE RESTRICT;
 
 UPDATE
     tickets
@@ -30,9 +30,9 @@ SET
         SELECT
             id
         FROM
-            category
+            categories
         WHERE
-            tickets.event_id = category.event_id AND category.name = 'Базовая'
+            tickets.event_id = categories.event_id AND categories.name = 'Базовая'
         )
 WHERE
     category_id IS NULL;

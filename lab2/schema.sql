@@ -1,3 +1,10 @@
+-- DROP TABLE tickets;
+-- DROP TABLE categories;
+-- DROP TABLE events;
+-- DROP TABLE companies;
+-- DROP TABLE locations;
+-- DROP TABLE users;
+
 CREATE TABLE users
 (
     id       BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
